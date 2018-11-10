@@ -9,3 +9,17 @@ var connection = mysql.createConnection({
   database : 'bamazon'
 });
 
+// prompt that will be given to customer//
+var schema = {
+    properties: {
+      ItemID: {
+        message: 'Enter the Item ID of the product you wish to purchase today',
+        required: true
+      },
+      quantity: {
+        message: 'Enter the quantity you wish to purchase today',
+        required: true
+      }
+    }
+  };
+  
