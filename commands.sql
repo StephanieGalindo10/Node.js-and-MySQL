@@ -1,1 +1,1 @@
-CREATE DATABASE Bamazon;
+CREATE DATABASE Bamazon_;
