@@ -10,7 +10,6 @@ var connection = mysql.createConnection({
 });
 
 
-
 // prompt that will be given to customer// second messages//
 var schema = {
     properties: {
