@@ -27,3 +27,6 @@ var schema = {
     }
   };
   
+  function showInventory() {
+    connection.query('SELECT ItemID, ProductName, Price FROM products', function(err, rows, fields) {
+      if (err) throw err;
