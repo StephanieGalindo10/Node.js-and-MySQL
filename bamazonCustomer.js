@@ -1,6 +1,8 @@
 var mysql = require('mysql');
 var prompt = require('prompt');
 
+
+
 //connecting to the MySQL DB//
 var connection = mysql.createConnection({
   host : 'localhost',
@@ -9,7 +11,9 @@ var connection = mysql.createConnection({
   database : 'bamazon'
 });
 
-// prompt that will be given to customer//
+
+
+// prompt that will be given to customer// second messages//
 var schema = {
     properties: {
       ItemID: {
