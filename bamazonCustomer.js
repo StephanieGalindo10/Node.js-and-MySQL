@@ -30,6 +30,7 @@ var schema = {
   function showInventory() {
     connection.query('SELECT ItemID, ProductName, Price FROM products', function(err, rows, fields) {
       if (err) throw err;
+      
       console.log('Available products:');
     for(var i = 0; i < rows.length; i++) {
       console.log('Item ID: ' + rows[i].ItemID + '   Product Name: ' + rows[i].ProductName + '   Price: $' + rows[i].Price);
@@ -38,3 +39,12 @@ var schema = {
   });
 };
 
+function runPrompt() {
+    prompt.start();
+
+    prompt.get(schema, function(err, result) {
+      var orderedProductID = result.ItemID;
+      var orderQuantity = result.quantity;
+      processOrder(orderedProductID, orderQuantity);
+    });
+  }
