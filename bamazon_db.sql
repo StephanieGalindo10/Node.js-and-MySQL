@@ -1,4 +1,9 @@
+/// the sql that was used for databased//
+
+
+
 DROP DATABASE IF EXISTS bamazon_DB;
+
 CREATE database bamazon_DB;
 
 USE bamazon_DB;
