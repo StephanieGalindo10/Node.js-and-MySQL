@@ -6,7 +6,7 @@ var cTable = require('console.table');
 var connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
-  password : 'root1234',
+  password : '',
   database : 'bamazon_db'
 });
 
