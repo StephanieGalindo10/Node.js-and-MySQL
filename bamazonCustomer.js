@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var prompt = require('prompt');
+var cTable = require('console.table');
 
 //connecting to the MySQL DB//
 var connection = mysql.createConnection({
@@ -28,10 +29,9 @@ var schema = {
     connection.query('SELECT ItemID, ProductName, Price FROM products', function(err, rows, fields) {
       if (err) throw err;
 
-      console.log('Available products:');
-    for(var i = 0; i < rows.length; i++) {
-      console.log('Item ID: ' + rows[i].ItemID + '   Product Name: ' + rows[i].ProductName + '   Price: $' + rows[i].Price);
-    }
+      
+      console.table(rows);
+    
     runPrompt();
   });
 };
@@ -47,9 +47,10 @@ function runPrompt() {
   }
 
   function processOrder(id, quantity) {
+      
     connection.query('SELECT StockQuantity FROM products WHERE ItemID = ?', [id], function(err, rows, fields) {
       if(err) throw err;
-  
+      
       if(JSON.parse(rows[0].StockQuantity) >= quantity) {
         var adjQuantity = rows[0].StockQuantity - quantity;
         getPrice(id, quantity);

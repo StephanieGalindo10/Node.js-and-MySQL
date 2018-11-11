@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var prompt = require('prompt');
+var cTable = require('console.table');
 
 
 
@@ -8,7 +9,7 @@ var connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
   password : 'root1234',
-  database : 'bamazon'
+  database : 'bamazon_db'
 });
 ////product sales///
 function showOptions() {
@@ -31,10 +32,12 @@ function menuPrompt() {
 	    }
 	  }
 	};
-
+///prompt//
 	prompt.start();
 	prompt.get(schema, function (err, result) {
-		var num = result.number;
+        var num = result.number;
+        console.log(result);
+        console.log(num);
 		checkSelected(num);
 	});
 };
@@ -61,6 +64,56 @@ function checkSelected(option) {
 			console.log('You did not enter a number for a menu option, please try again');
 	};
 };
+
+function addStock(){
+    var schema = {
+        properties: {
+          ItemID: {
+            message: 'Enter the Item ID of the product you wish to add stock',
+            required: true
+          },
+          quantity: {
+            message: 'Enter the quantity you wish to add',
+            required: true
+          }
+        }
+      };
+
+      connection.query('SELECT * FROM products', function(err,rows){
+       
+        console.table(rows);
+        prompt.get(schema, function (err, result) {
+            var newQuantity = result.quantity 
+            console.log(result);
+            connection.query('UPDATE products SET StockQuantity += ' + newQuantity + " WHERE ItemID= " + result.ItemID, function(err, rows){
+                console.log(rows);
+                console.log(err);
+                console.log('results from update');
+            })
+            
+            
+        });
+    });
+    
+   
+}
+
+function listProducts(){
+   
+    connection.query('SELECT * FROM products', function(err,rows){
+       
+        console.table(rows);
+    });
+}
+
+function showLowInventory (){
+    
+     
+    connection.query('SELECT * FROM products WHERE StockQuantity < 10', function(err, rows){
+        console.log('Low Quantity Items List');
+        console.table(rows)
+    });
+}
 
 
 showOptions();
