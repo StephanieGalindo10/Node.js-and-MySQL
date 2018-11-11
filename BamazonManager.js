@@ -5,10 +5,10 @@ var prompt = require('prompt');
 var connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
-  password : 'bootcamp',
+  password : 'root1234',
   database : 'bamazon'
 });
-
+////product sales///
 function showOptions() {
 	var menuOptions = ['1. View Products for Sale', '2. View Low Inventory', '3. Add to Inventory', '4. Add New Product'];
 	console.log('Menu Options:');
@@ -59,3 +59,5 @@ function checkSelected(option) {
 			console.log('You did not enter a number for a menu option, please try again');
 	};
 };
+
+///need to contuine//
