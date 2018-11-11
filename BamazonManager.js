@@ -60,4 +60,6 @@ function checkSelected(option) {
 	};
 };
 
+
+showOptions();
 ///need to contuine//
